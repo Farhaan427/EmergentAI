@@ -368,48 +368,64 @@ const Home = () => {
 
                 {/* Recognition Result */}
                 {recognitionResult && (
-                  <Card className="mt-6 bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200" data-testid="recognition-result">
-                    <CardHeader>
-                      <CardTitle className="text-lg flex items-center justify-between">
-                        Recognition Result
-                        <Badge variant={recognitionResult.confidence === 'high' ? 'default' : 'secondary'} data-testid="confidence-badge">
+                  <Card className="mt-8 bg-gradient-to-br from-amber-50 via-rose-50 to-orange-50 border-2 border-amber-200/50 rounded-2xl shadow-xl animate-fadeIn" data-testid="recognition-result">
+                    <CardHeader className="pb-3">
+                      <CardTitle className="text-xl font-semibold flex items-center justify-between">
+                        <span className="flex items-center gap-2">
+                          <Check className="w-5 h-5 text-green-600" />
+                          Recognition Result
+                        </span>
+                        <Badge 
+                          variant={recognitionResult.confidence === 'high' ? 'default' : 'secondary'} 
+                          className={recognitionResult.confidence === 'high' ? 'bg-green-500 hover:bg-green-600 text-white px-4 py-1.5' : 'px-4 py-1.5'}
+                          data-testid="confidence-badge"
+                        >
                           {recognitionResult.confidence} confidence
                         </Badge>
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-2xl font-semibold text-gray-800 mb-4" data-testid="recognized-text">
-                        {recognitionResult.recognized_text}
-                      </p>
+                      <div className="bg-white rounded-xl p-6 shadow-md mb-4">
+                        <p className="text-3xl font-bold text-gray-800 leading-relaxed" data-testid="recognized-text" style={{fontFamily: 'Playfair Display, serif'}}>
+                          "{recognitionResult.recognized_text}"
+                        </p>
+                      </div>
                       
                       {/* Compare Section */}
-                      <div className="space-y-3 mt-4 pt-4 border-t">
-                        <Label htmlFor="compare-input">Compare with expected text:</Label>
-                        <div className="flex gap-2">
+                      <div className="space-y-4 mt-6 pt-6 border-t-2 border-gray-200/50">
+                        <Label htmlFor="compare-input" className="text-base font-semibold text-gray-700">Compare with expected text:</Label>
+                        <div className="flex gap-3">
                           <Input
                             id="compare-input"
                             placeholder="Enter expected text..."
                             value={compareText}
                             onChange={(e) => setCompareText(e.target.value)}
+                            className="h-12 rounded-xl border-2 border-gray-200 focus:border-amber-400 transition-colors"
                             data-testid="compare-input"
                           />
-                          <Button onClick={handleCompare} data-testid="compare-btn">
+                          <Button 
+                            onClick={handleCompare} 
+                            className="h-12 px-8 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300" 
+                            data-testid="compare-btn"
+                          >
                             Compare
                           </Button>
                         </div>
                         {compareResult && (
-                          <div className="mt-3 p-4 bg-white rounded-lg" data-testid="compare-result">
-                            <div className="flex items-center gap-2 mb-2">
-                              {compareResult.match_percentage === 100 ? (
-                                <Check className="w-5 h-5 text-green-600" />
-                              ) : (
-                                <X className="w-5 h-5 text-orange-600" />
-                              )}
-                              <span className="font-semibold" data-testid="match-percentage">
+                          <div className="mt-4 p-6 bg-white rounded-xl shadow-md animate-fadeIn" data-testid="compare-result">
+                            <div className="flex items-center gap-3 mb-3">
+                              <div className={`p-2 rounded-full ${compareResult.match_percentage === 100 ? 'bg-green-100' : 'bg-orange-100'}`}>
+                                {compareResult.match_percentage === 100 ? (
+                                  <Check className="w-6 h-6 text-green-600" />
+                                ) : (
+                                  <X className="w-6 h-6 text-orange-600" />
+                                )}
+                              </div>
+                              <span className="text-2xl font-bold text-gray-800" data-testid="match-percentage">
                                 {compareResult.match_percentage}% Match
                               </span>
                             </div>
-                            <p className="text-sm text-gray-600" data-testid="match-analysis">{compareResult.analysis}</p>
+                            <p className="text-base text-gray-600 leading-relaxed" data-testid="match-analysis">{compareResult.analysis}</p>
                           </div>
                         )}
                       </div>
