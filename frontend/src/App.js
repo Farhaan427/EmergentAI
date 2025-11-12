@@ -292,11 +292,12 @@ const Home = () => {
                   {/* Upload Tab */}
                   <TabsContent value="upload" data-testid="upload-panel">
                     <div className="space-y-4">
-                      <div className="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center">
-                        <Upload className="w-12 h-12 mx-auto mb-4 text-gray-400" />
-                        <Label htmlFor="file-upload" className="cursor-pointer">
-                          <span className="text-blue-600 hover:text-blue-700 font-medium">Choose a file</span>
-                          <span className="text-gray-600"> or drag and drop</span>
+                      <div className="relative border-3 border-dashed border-amber-300 rounded-2xl p-16 text-center bg-gradient-to-br from-amber-50/50 to-orange-50/50 hover:from-amber-100/50 hover:to-orange-100/50 transition-all duration-300 group">
+                        <Upload className="w-16 h-16 mx-auto mb-6 text-amber-500 group-hover:scale-110 transition-transform duration-300" />
+                        <Label htmlFor="file-upload" className="cursor-pointer block">
+                          <span className="text-lg font-semibold text-amber-600 hover:text-amber-700">Choose a file</span>
+                          <span className="block text-gray-600 mt-2">or drag and drop</span>
+                          <span className="block text-sm text-gray-500 mt-3">PNG, JPG, JPEG up to 10MB</span>
                         </Label>
                         <Input
                           id="file-upload"
