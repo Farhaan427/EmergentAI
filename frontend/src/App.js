@@ -234,16 +234,16 @@ const Home = () => {
               </CardHeader>
               <CardContent className="p-6">
                 <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-                  <TabsList className="grid w-full grid-cols-3 mb-6">
-                    <TabsTrigger value="draw" data-testid="tab-draw">
+                  <TabsList className="grid w-full grid-cols-3 mb-8 bg-gradient-to-r from-amber-100 via-rose-100 to-orange-100 p-1.5 rounded-2xl">
+                    <TabsTrigger value="draw" data-testid="tab-draw" className="rounded-xl data-[state=active]:bg-white data-[state=active]:shadow-lg transition-all duration-300">
                       <Pencil className="w-4 h-4 mr-2" />
                       Draw
                     </TabsTrigger>
-                    <TabsTrigger value="upload" data-testid="tab-upload">
+                    <TabsTrigger value="upload" data-testid="tab-upload" className="rounded-xl data-[state=active]:bg-white data-[state=active]:shadow-lg transition-all duration-300">
                       <Upload className="w-4 h-4 mr-2" />
                       Upload
                     </TabsTrigger>
-                    <TabsTrigger value="webcam" data-testid="tab-webcam">
+                    <TabsTrigger value="webcam" data-testid="tab-webcam" className="rounded-xl data-[state=active]:bg-white data-[state=active]:shadow-lg transition-all duration-300">
                       <Camera className="w-4 h-4 mr-2" />
                       Webcam
                     </TabsTrigger>
