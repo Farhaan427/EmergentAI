@@ -209,15 +209,18 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 p-4 sm:p-8">
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-rose-50 to-orange-50 p-4 sm:p-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-5xl sm:text-6xl font-bold text-gray-800 mb-4" style={{fontFamily: 'Space Grotesk, sans-serif'}}>
-            SketchReader
-          </h1>
-          <p className="text-lg text-gray-600" style={{fontFamily: 'Inter, sans-serif'}}>
-            AI-Powered Handwriting Recognition
+        <div className="text-center mb-12 relative">
+          <div className="inline-block relative">
+            <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-rose-600 to-orange-600 mb-3 animate-gradient" style={{fontFamily: 'Playfair Display, serif'}}>
+              SketchReader
+            </h1>
+            <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-amber-400 via-rose-400 to-orange-400 rounded-full opacity-60"></div>
+          </div>
+          <p className="text-base sm:text-lg text-gray-700 mt-6 font-medium tracking-wide" style={{fontFamily: 'Inter, sans-serif'}}>
+            Transform Handwriting into Digital Text
           </p>
         </div>
 
