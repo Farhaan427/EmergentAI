@@ -438,29 +438,48 @@ const Home = () => {
 
           {/* History Sidebar */}
           <div className="lg:col-span-1">
-            <Card className="backdrop-blur-sm bg-white/90 shadow-xl border-0">
-              <CardHeader>
-                <CardTitle className="text-xl" style={{fontFamily: 'Space Grotesk, sans-serif'}}>Recent History</CardTitle>
+            <Card className="backdrop-blur-xl bg-white/80 shadow-2xl border border-white/40 rounded-3xl overflow-hidden sticky top-8">
+              <CardHeader className="bg-gradient-to-r from-amber-500/10 via-rose-500/10 to-orange-500/10 border-b border-gray-100/50">
+                <CardTitle className="text-2xl font-semibold text-gray-800" style={{fontFamily: 'Playfair Display, serif'}}>Recent History</CardTitle>
                 <CardDescription>Your recognition history</CardDescription>
               </CardHeader>
-              <CardContent>
-                <div className="space-y-3" data-testid="history-list">
+              <CardContent className="p-6">
+                <div className="space-y-4" data-testid="history-list">
                   {history.length === 0 ? (
-                    <p className="text-sm text-gray-500 text-center py-8">No history yet</p>
+                    <div className="text-center py-12">
+                      <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-amber-100 to-orange-100 flex items-center justify-center">
+                        <Pencil className="w-8 h-8 text-amber-500" />
+                      </div>
+                      <p className="text-sm text-gray-500">No history yet</p>
+                      <p className="text-xs text-gray-400 mt-1">Start recognizing text!</p>
+                    </div>
                   ) : (
                     history.map((item, index) => (
-                      <div key={item.id || index} className="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors" data-testid={`history-item-${index}`}>
-                        <div className="flex items-start justify-between mb-1">
-                          <Badge variant="outline" className="text-xs" data-testid={`history-source-${index}`}>{item.source}</Badge>
-                          <span className="text-xs text-gray-500">
+                      <div 
+                        key={item.id || index} 
+                        className="p-4 bg-gradient-to-br from-amber-50/50 to-orange-50/50 rounded-xl hover:from-amber-100/50 hover:to-orange-100/50 hover:shadow-lg transition-all duration-300 border border-gray-100 group" 
+                        data-testid={`history-item-${index}`}
+                      >
+                        <div className="flex items-start justify-between mb-2">
+                          <Badge 
+                            variant="outline" 
+                            className="text-xs font-medium border-amber-300 text-amber-700 bg-amber-50" 
+                            data-testid={`history-source-${index}`}
+                          >
+                            {item.source}
+                          </Badge>
+                          <span className="text-xs text-gray-500 font-medium">
                             {new Date(item.timestamp).toLocaleTimeString()}
                           </span>
                         </div>
-                        <p className="text-sm font-medium text-gray-800 truncate" data-testid={`history-text-${index}`}>
+                        <p className="text-base font-semibold text-gray-800 truncate group-hover:text-amber-700 transition-colors" data-testid={`history-text-${index}`}>
                           {item.recognized_text}
                         </p>
                         {item.confidence && (
-                          <p className="text-xs text-gray-500 mt-1">Confidence: {item.confidence}</p>
+                          <div className="flex items-center gap-1 mt-2">
+                            <div className={`w-2 h-2 rounded-full ${item.confidence === 'high' ? 'bg-green-500' : 'bg-yellow-500'}`}></div>
+                            <p className="text-xs text-gray-500 capitalize">{item.confidence} confidence</p>
+                          </div>
                         )}
                       </div>
                     ))
