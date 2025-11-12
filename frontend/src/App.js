@@ -224,15 +224,15 @@ const Home = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-6">
+        <div className="grid lg:grid-cols-3 gap-8">
           {/* Main Recognition Area */}
           <div className="lg:col-span-2">
-            <Card className="backdrop-blur-sm bg-white/90 shadow-xl border-0">
-              <CardHeader>
-                <CardTitle className="text-2xl" style={{fontFamily: 'Space Grotesk, sans-serif'}}>Recognition Studio</CardTitle>
-                <CardDescription>Draw, upload, or capture handwritten text</CardDescription>
+            <Card className="backdrop-blur-xl bg-white/80 shadow-2xl border border-white/40 rounded-3xl overflow-hidden hover:shadow-3xl transition-all duration-300">
+              <CardHeader className="bg-gradient-to-r from-amber-500/10 via-rose-500/10 to-orange-500/10 border-b border-gray-100/50">
+                <CardTitle className="text-3xl font-semibold text-gray-800" style={{fontFamily: 'Playfair Display, serif'}}>Recognition Studio</CardTitle>
+                <CardDescription className="text-base">Draw, upload, or capture handwritten text</CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="p-6">
                 <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
                   <TabsList className="grid w-full grid-cols-3 mb-6">
                     <TabsTrigger value="draw" data-testid="tab-draw">
