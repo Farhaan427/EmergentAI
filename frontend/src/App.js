@@ -314,25 +314,49 @@ const Home = () => {
 
                   {/* Webcam Tab */}
                   <TabsContent value="webcam" data-testid="webcam-panel">
-                    <div className="space-y-4">
-                      <video
-                        ref={webcamRef}
-                        className="border-2 border-gray-200 rounded-lg w-full bg-black"
-                        style={{maxHeight: '300px'}}
-                        data-testid="webcam-video"
-                      />
-                      <div className="flex gap-2">
+                    <div className="space-y-6">
+                      <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-black">
+                        <video
+                          ref={webcamRef}
+                          className="w-full rounded-2xl"
+                          style={{maxHeight: '300px', objectFit: 'cover'}}
+                          data-testid="webcam-video"
+                        />
+                        {!webcamStream && (
+                          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800">
+                            <div className="text-center">
+                              <Camera className="w-16 h-16 mx-auto mb-4 text-gray-400" />
+                              <p className="text-gray-300">Webcam not started</p>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex gap-3">
                         {!webcamStream ? (
-                          <Button onClick={startWebcam} className="flex-1" data-testid="start-webcam-btn">
-                            <Camera className="mr-2 h-4 w-4" />
+                          <Button 
+                            onClick={startWebcam} 
+                            className="flex-1 h-12 rounded-xl bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300" 
+                            data-testid="start-webcam-btn"
+                          >
+                            <Camera className="mr-2 h-5 w-5" />
                             Start Webcam
                           </Button>
                         ) : (
                           <>
-                            <Button onClick={captureWebcam} disabled={loading} className="flex-1" data-testid="capture-webcam-btn">
-                              {loading ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Processing...</> : 'Capture & Recognize'}
+                            <Button 
+                              onClick={captureWebcam} 
+                              disabled={loading} 
+                              className="flex-1 h-12 rounded-xl bg-gradient-to-r from-amber-500 via-rose-500 to-orange-500 hover:from-amber-600 hover:via-rose-600 hover:to-orange-600 text-white font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300" 
+                              data-testid="capture-webcam-btn"
+                            >
+                              {loading ? <><Loader2 className="mr-2 h-5 w-5 animate-spin" />Processing...</> : 'Capture & Recognize'}
                             </Button>
-                            <Button onClick={stopWebcam} variant="outline" data-testid="stop-webcam-btn">
+                            <Button 
+                              onClick={stopWebcam} 
+                              variant="outline" 
+                              className="h-12 px-6 rounded-xl border-2 border-gray-300 hover:border-red-400 hover:bg-red-50 transition-all duration-300" 
+                              data-testid="stop-webcam-btn"
+                            >
                               Stop
                             </Button>
                           </>
