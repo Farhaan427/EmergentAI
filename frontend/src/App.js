@@ -251,24 +251,39 @@ const Home = () => {
 
                   {/* Draw Tab */}
                   <TabsContent value="draw" data-testid="draw-panel">
-                    <div className="space-y-4">
-                      <canvas
-                        ref={canvasRef}
-                        width={600}
-                        height={300}
-                        className="border-2 border-gray-200 rounded-lg w-full cursor-crosshair bg-white"
-                        onMouseDown={startDrawing}
-                        onMouseMove={draw}
-                        onMouseUp={stopDrawing}
-                        onMouseLeave={stopDrawing}
-                        data-testid="drawing-canvas"
-                      />
-                      <div className="flex gap-2">
-                        <Button onClick={recognizeCanvas} disabled={loading} className="flex-1" data-testid="recognize-canvas-btn">
-                          {loading ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Recognizing...</> : 'Recognize'}
+                    <div className="space-y-6">
+                      <div className="relative group">
+                        <canvas
+                          ref={canvasRef}
+                          width={600}
+                          height={300}
+                          className="border-3 border-gray-200 rounded-2xl w-full cursor-crosshair bg-white shadow-inner hover:shadow-xl transition-shadow duration-300"
+                          onMouseDown={startDrawing}
+                          onMouseMove={draw}
+                          onMouseUp={stopDrawing}
+                          onMouseLeave={stopDrawing}
+                          data-testid="drawing-canvas"
+                        />
+                        <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full text-xs text-gray-600 shadow-md opacity-0 group-hover:opacity-100 transition-opacity">
+                          Draw here ✍️
+                        </div>
+                      </div>
+                      <div className="flex gap-3">
+                        <Button 
+                          onClick={recognizeCanvas} 
+                          disabled={loading} 
+                          className="flex-1 h-12 rounded-xl bg-gradient-to-r from-amber-500 via-rose-500 to-orange-500 hover:from-amber-600 hover:via-rose-600 hover:to-orange-600 text-white font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300" 
+                          data-testid="recognize-canvas-btn"
+                        >
+                          {loading ? <><Loader2 className="mr-2 h-5 w-5 animate-spin" />Recognizing...</> : 'Recognize Handwriting'}
                         </Button>
-                        <Button onClick={clearCanvas} variant="outline" data-testid="clear-canvas-btn">
-                          <Trash2 className="w-4 h-4" />
+                        <Button 
+                          onClick={clearCanvas} 
+                          variant="outline" 
+                          className="h-12 px-6 rounded-xl border-2 border-gray-300 hover:border-rose-400 hover:bg-rose-50 transition-all duration-300" 
+                          data-testid="clear-canvas-btn"
+                        >
+                          <Trash2 className="w-5 h-5" />
                         </Button>
                       </div>
                     </div>
